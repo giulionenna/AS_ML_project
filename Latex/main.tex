@@ -47,6 +47,8 @@
 \usepackage{movie15}
  \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{tabularx}
+\usepackage{longtable}
  
 % Font Management
 \usepackage[T1]{fontenc}       % 8 bit font encoding: includes all accents
@@ -169,22 +171,77 @@ frame=lines,                   %POSSO TOGLIERLO
 \date{Data Analysis applied to a Marketing Dataset}
 \begin{document}
 \maketitle
-\section{Introduzione al problema} 
-%\input{intro}
-\newpage
-\section{Il problema TSP e algoritmi risolutivi}
+\section{Introduction} 
+The main goal of this report is to apply different machine learning tecniques to a \href{http://archive.ics.uci.edu/ml/datasets/Bank+Marketing}{dataset} that can be found on the \href{http://archive.ics.uci.edu/ml/index.php}{UCI Machine Learning Repository}. The data is related with direct marketing campaigns (phone calls) of a Portuguese banking institution. Each entry represents a phone call to a client of whom several features are provided. \\
+\\
+The responce variable is binary (yes or no) and indicates whether a phone call successfully convinced the client to purchase a financial product the bank is tryng to sell (bank term deposit). Among the 20 provided features, 11 are categorical and the remaining are numerical. An extensive description of each feature will now follow.
 
-%\input{tsp}
-\newpage
-\section{\color{red}Extra Mile}
-%\input{extra_mile}
-\newpage
-\section{\color{red} tabu}
-%\input{tabu}
-\newpage
-%\input{risultati}
-\newpage
+\subsection{Attribute information}
+Table \ref{table_attributes} provides an extensive overview about each attribute featured in the dataset.
+\\
+\\
+Important notes about some of the attributes are the following:
+\begin{description}
+  \item[$\bullet$] Attributes from \texttt{Contact} to \texttt{duration} are related to the last contact of the current campaign
+  \item[$\bullet$ ] The attribute \texttt{duration} affers to the call duration and it's not known until the call is completed. It highly affects the prediction (e.g. if \texttt{duration=0} then the outcome will always be \textit{not successful}), hence it will be deleted since the model is ment to be deployed with real world data.  
+\end{description}
 
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{|X|X|X|X|}
+    
+    \hline
+   Name & Description & Type & Possible values \\
+   \hline
+   \hline
+   Age&Age of each client&numeric&- \\
+   \hline
+   Job& Type of job& categorical& Admn, blue-collar, entrepreneur...\\
+   \hline
+   Marital& Marital Status& categorical & Divorced, married, single, unknown\\
+   \hline
+   Education& level of education& categorical& basic.4y, basic.6y, basic.9y, high-school,...\\
+   \hline
+   Default&whether a client has credit in default & Categorical & Yes, No, Unknown\\
+   \hline
+   Housing& whether a client has an housing loan& Categorical & Yes, No, Unknown\\
+   \hline
+   Loan& whether a client has a personal loan& Categorical & Yes, No, Unknown\\
+   \hline
+   Contact& contact communication type& Categorical& cellular, telephone\\
+   \hline
+   Month& last contact month of the yeah& Categorical & jan, feb, mar...\\
+   \hline
+   Day of the week& last contact day of the week& Categorical & mon, tue, ...\\
+   \hline
+   Duration& Last contact duration in seconds (see notes)& Numeric&-\\
+   \hline
+   Campaign& number of contacts performed during this campaign for that client& Numeric& - \\
+   \hline
+   pdays& number of days that passed by after the client was last contacted from a previous campaign& numeric&-\\
+   \hline
+   previous& number of contacts performed before this campaign for this client& numeric&-\\
+   \hline
+   poutcome& outcome of the previous marketing campaign& Categorical & Failure, nonexistent, success\\
+   \hline
+   emp.var.rate& employment variation rate - quarterly indicator & Numeric &- \\
+   \hline
+   cons.price.idx& consumer price index - monthly indicator & Numeric & - \\
+   \hline
+   cons.conf.idx& consumer conficence index - monthly indicator & Numeric & - \\
+   \hline
+   euribor3m & euribor 3 month rate - daily indicator & Numeric & -\\
+   \hline
+   nr.employed& Number of employees - quarterly indicator & Numeric & - \\
+   \hline
+   \textbf{Responce variable: } \texttt{y} & Has the client subscribed to a term deposit & Binary & Yes, No\\
+   \hline
+\end{tabularx}
+\caption{Extensive description for each attribute in the dataframe}
+\label{table_attributes}
+\end{table}
+
+\section{Data Exploration and Preprocessing}
+\input{data_exploration_preprocessing}
 
 
 %\bibliographystyle{plain} % We choose the "plain" reference style

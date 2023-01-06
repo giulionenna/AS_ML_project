@@ -1,0 +1,38 @@
+We first import the dataset and encode each categorical feature using \textit{one-hot encoding}. This means that numerical features will be left unchanged while for each categorical feature the process is the following:
+\begin{description}
+    \item[1.] Determine all the distinct values of that feature (categories)
+    \item[2.] For each category generate a new binary column
+    \item[3.] Assign values to the binary columns according to categories featred in each line.   
+\end{description}
+\begin{center}
+    \begin{tabular}{|c|}
+        \hline
+        feature \\
+        \hline
+        \hline
+        category 1 \\
+        \hline
+        category 2 \\
+        \hline
+        category 3 \\
+        \hline
+        category 2 \\
+        \hline
+    \end{tabular}
+    \quad
+    \begin{tabular}{|c|c|c|}
+        \hline
+        category 1 & category 2 & category 3\\
+        \hline
+        \hline
+        1 & 0 & 0 \\
+        \hline
+        0 & 1 & 0 \\
+        \hline 
+        0 & 0 & 1 \\
+        \hline
+        0 & 1 & 0 \\
+        \hline
+    \end{tabular}
+        
+\end{center}
