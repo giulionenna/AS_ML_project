@@ -155,4 +155,33 @@ y_test = df_test['y_yes']
 
 \end{lstlisting}
 
+\subsection{Scaling the dataset}
 
+The encoded dataset is characterized by features with very different scale/range  of values. In this case, if we apply PCA or any kind of training model on this data, some important features can be "covered" by other feature just for the unit measure disparity. This is why is a good practice to **rescale** the data. The most used scalers used are the \textbf{Min-max Scaler} and \textbf{Standard Scaler}\\
+\\
+The \textbf{Min-Max Scaler} trasnform the data such that the values of each column are distributed between a minimum value $m$ and a maximum value $M$. Let $X \in \mathbb{R}^{n \times p}$ be our feature matrix, with $X=[x_1, x_2, \dots, x_p]$. Let $X' \in \mathbb{R}$ be our scaled matrix with $X'=[x'_1, x'_2, \dots, x'_p]$. If $M_i = \max\{x_i\}$, $m_i = \min\{x_i\}$, $i \in \{1,  \dots,  p\}$ then
+\begin{equation}
+    x'_i = \frac{x_i - m_i}{M_i-m_i} \quad i \in \{1,  \dots,  p\}    
+\end{equation}
+where all operations are intended to be element-wise. \\
+\\
+On the other hand the \textbf{Standard-Scaler} makes the values of each feature in the data to have zero-mean and unit-variance. In particular: 
+\begin{equation}
+    x'_i = \frac{x_i - \bar{x_i}}{s_i} \quad i \in \{1,  \dots,  p\}    
+\end{equation}
+where $\bar{x_i}$ is the \textit{sample mean} and $s_i$ is the \textit{sample variance} of the $i$-th column
+\begin{lstlisting}[language=Python, caption= Data scaling]
+#Performing scaling using min-max scaler
+scaler_mm = MinMaxScaler()
+scaler_mm.fit(X_train)
+
+X_train_scaled_mm = scaler_mm.transform(X_train)
+X_test_scaled_mm = scaler_mm.transform(X_test)
+
+#Performing scaling using standard scaler
+scaler_std = StandardScaler()
+scaler_std.fit(X_train)
+
+X_train_scaled_std = scaler_std.transform(X_train)
+X_test_scaled_std = scaler_std.transform(X_test)
+\end{lstlisting}
