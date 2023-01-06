@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1673030504 "c:/Users/giuli/Documents/AS_ML_project/Latex/main.tex" "main.pdf" "main" 1673030506
+["pdflatex"] 1673032201 "c:/Users/giuli/Documents/AS_ML_project/Latex/main.tex" "main.pdf" "main" 1673032202
   "c:/Users/giuli/Documents/AS_ML_project/Latex/main.tex" 1673027424 8556 0c0e44dd79df8aee531bbc31b5fa9515 ""
   "c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1625386454 2375 baa924870cfb487815765f9094cf3728 ""
   "c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc" 1625386454 2840 216e6e45ad352e2456e1149f28885bee ""
@@ -200,14 +200,18 @@
   "c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1625388953 5227234 8169b85b11be64e0073b5aa9f9ec0c16 ""
   "c:/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1625389015 2814096 c2f185a324c4ab89ca2e6b7dc489b24b ""
   "c:/texlive/2021/texmf.cnf" 1625388930 713 e69b156964470283e0530f5060668171 ""
-  "data_exploration_preprocessing.tex" 1673030068 2339 852b18e429b79d26b402edbb8ee90c23 ""
-  "main.aux" 1673030506 1901 8404f223867417f665739791ec14b412 "pdflatex"
-  "main.out" 1673030506 626 f58680a7d0cec2e8003e8163d9ae580c "pdflatex"
+  "data_exploration_preprocessing.tex" 1673032198 3010 f115c60af62e07fda1dfab56fd79258b ""
+  "main.aux" 1673032202 2385 c356121a1ab1735289f670d9ca801c16 "pdflatex"
+  "main.out" 1673032202 626 f58680a7d0cec2e8003e8163d9ae580c "pdflatex"
   "main.tex" 1673027424 8556 0c0e44dd79df8aee531bbc31b5fa9515 ""
-  "pictures/pieplotjob.pdf" 1673030494 36554 f01e4816f488d4d177eb53bf8b27ff5c ""
-  "pictures/pieplotmarital.pdf" 1673030494 33532 bf691ddb5331c70c7b77f043146df4a4 ""
+  "pictures/pieplot0_job.pdf" 1673031817 30017 c341422f84d3938369168121f9ccf2c2 ""
+  "pictures/pieplot1_marital.pdf" 1673031817 28951 7acb4fc0af4226ec8be007809e361778 ""
+  "pictures/pieplot2_education.pdf" 1673031817 29691 bb398e2a473ce4e8a9513a1d9b38f270 ""
+  "pictures/pieplot3_default.pdf" 1673031817 24193 2b81a033dd044ce71eefc03ce3da59a3 ""
+  "pictures/pieplot4_housing.pdf" 1673031817 22448 88f27d9ba8a137c33533c6dbe680b96f ""
+  "pictures/pieplot5_loan.pdf" 1673031817 23864 7055500f8fcc100486a4dc147df893f5 ""
   (generated)
+  "main.out"
   "main.aux"
   "main.log"
-  "main.out"
   "main.pdf"
