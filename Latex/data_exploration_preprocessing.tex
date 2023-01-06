@@ -50,7 +50,9 @@ We first import the dataset and encode each categorical feature using \textit{on
 \end{lstlisting}
 
 \subsection{Data Exploration}
-Independently from encoding we can also perform some data exploration, in order to gain useful insights about some of the attributes featured in the dataset. There are 11 categorical features and the remaining are numerical. Categorical data will be explored by means of \textit{pie charts} while numerical data will be explored by means of a \textit{scatterplot matrix}
+In order to gain useful insights about some of the attributes featured in the dataset we can now perfom some \textit{data exploration}. This step of the analysis is qualitative by nature and consists in plotting graphs and distributions relative to each feature in the dataset.\\
+\\
+ There are 11 categorical features and the remaining are numerical. Categorical data will be explored by means of \textit{pie charts} while numerical data will be explored by means of a \textit{scatterplot matrix}
 
 \begin{figure}[H]
     \centering
@@ -76,5 +78,81 @@ Independently from encoding we can also perform some data exploration, in order 
     \subfloat[2][Pieplot relative to \texttt{loan}]{\includegraphics[scale = 0.8]{pictures/pieplot5_loan.pdf}}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \subfloat[1][Pieplot relative to \texttt{contact}]{\includegraphics[scale = 0.8]{pictures/pieplot6_contact.pdf}}
+    \qquad
+    \qquad
+    \subfloat[2][Pieplot relative to \texttt{month}]{\includegraphics[scale = 0.8]{pictures/pieplot7_month.pdf}}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \subfloat[1][Pieplot relative to \texttt{day\_of\_the\_week}]{\includegraphics[scale = 0.8]{pictures/pieplot8_day_of_week.pdf}}
+    \qquad
+    \qquad
+    \subfloat[2][Pieplot relative to \texttt{poutcome}]{\includegraphics[scale = 0.8]{pictures/pieplot9_poutcome.pdf}}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.55]{pictures/scatterplot.pdf}
+    \caption{Scatterplot matrix of numerical features }
+\end{figure}
+From the scatterplot we don't see any particular correlation between numerical features. Yet, as for the coloring of the data, one can notice that the attribute campaign discriminates pretty well the outcome. As a matter of fact people that recieved a lot of calls from the call center never buy the product that the bank is trying to sell. This information alone could be of some value for reducing cost and better targeting calls.
+
+\subsection{Dataset splitting}
+After exploring data, the first thing to do is to perform a split of our dataset into training and test set.
+\begin{lstlisting}[language=Python, caption= Data splitting]
+    df_train, df_test = train_test_split(df_enc, test_size=0.1, random_state=42)
+\end{lstlisting}
+As it is the case with some binary classification datasets, our data is heavly biased towards one class of outcome. In our case the most common outcome for each call is, reasonably, unsuccesful call: meaning that the client that has been called have \textbf{not} purchased the product that the bank is trying to sell. In order to quantify the class unbalance we can use a simple pie chart:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{pictures/pieplot_unbalance.pdf}
+
+    \caption{Responce variable class unbalance}
+\end{figure}
+
+As we can see $\sim 90\%$ of our data is biased towards the majority class (no). If we tried to feed the data as it is to any classification model the resulting classifier would seem to be "accurate" even if it really isn't.\\
+\\
+As a simple example we could think of a classifier that classifies every data entry as "no" no matter of the features. This naive classifier, tested with our heavily biased data, would result to have $\sim 90\%$ accuracy, the same percentage of the majority class with respect to the whole dataset.\\
+\\
+Various techniques can be used in order to solve this problem, among them there are \textbf{Oversampling} and \textbf{Undersampling}. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{pictures/undersampling-oversampling.png}
+
+    \caption*{Visual exapmple of Oversampling and Undersampling}
+\end{figure}
+As the name suggests, oversampling takes place when the minority class is used to generate new bootstrapped data to balance classess. On the other hand undersampling consists in randomly sampling from the majority class enough samples such that the two classes are balanced. In our case, since we have enough data, we can opt for undersampling in order to balance classes.
+
+\begin{lstlisting}[language=Python, caption= Data rebalancing]
+response = df_train['y_yes']
+feature_matrix = df_train.loc[:, df_train.columns!='y_yes']
+
+#rebalancing classes (y_yes=1 is the minority class)--------
+ratio = df_train['y_yes'].sum()/df_train['y_yes'].size
+print("Original training dataset has", df_train.index.size, "Observations. \n", "Among them", response.sum(), "are positive and", response.size-response.sum(), "are negative \n Performing dataset rebalancing by undersampling... \n\n" )
+df_train_false = df_train.loc[response==0, :]
+df_train_false_resampled = df_train_false.sample(frac=ratio)
+
+df_train_true = df_train.loc[response==1,:]
+
+df_train = pd.concat([df_train_true, df_train_false_resampled])
+ratio = df_train['y_yes'].sum()/df_train['y_yes'].size
+
+response = df_train['y_yes']
+feature_matrix = df_train.loc[:, df_enc.columns!='y_yes']
+
+print("Training Dataset rebalancing performed. Dataset has now", df_train.index.size, "Observations. \n", "Among them", response.sum(), "are positive and", response.size-response.sum(), "are negative \n\n" )
+
+X_train = df_train.loc[:, df_train.columns!='y_yes']
+X_test = df_test.loc[:, df_test.columns!='y_yes']
+y_train = df_train['y_yes']
+y_test = df_test['y_yes']
+
+\end{lstlisting}
 
 
