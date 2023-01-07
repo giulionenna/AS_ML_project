@@ -98,7 +98,7 @@ In order to gain useful insights about some of the attributes featured in the da
     \includegraphics[scale=0.55]{pictures/scatterplot.pdf}
     \caption{Scatterplot matrix of numerical features }
 \end{figure}
-From the scatterplot we don't see any particular correlation between numerical features. Yet, as for the coloring of the data, one can notice that the attribute campaign discriminates pretty well the outcome. As a matter of fact people that recieved a lot of calls from the call center never buy the product that the bank is trying to sell. This information alone could be of some value for reducing cost and better targeting calls.
+From the scatterplot we don't see any particular correlation between numerical features. Yet, as for the coloring of the data, one can notice that the attribute \texttt{campaign} discriminates pretty well the outcome. As a matter of fact people that recieved a lot of calls from the call center never buy the product that the bank is trying to sell. This information alone could be of some value for reducing cost and better targeting calls.
 
 \subsection{Dataset splitting}
 After exploring data, the first thing to do is to perform a split of our dataset into training and test set.
@@ -154,12 +154,13 @@ y_train = df_train['y_yes']
 y_test = df_test['y_yes']
 
 \end{lstlisting}
+One can notice that only the training tast was subject to the rebalancing process. This is because real-world data will not be balanced and rebalancing test data would cause the same problems concearning test accuracy.
 
 \subsection{Scaling the dataset}
 
-The encoded dataset is characterized by features with very different scale/range  of values. In this case, if we apply PCA or any kind of training model on this data, some important features can be "covered" by other feature just for the unit measure disparity. This is why is a good practice to **rescale** the data. The most used scalers used are the \textbf{Min-max Scaler} and \textbf{Standard Scaler}\\
+The encoded dataset is characterized by features with very different scale/range  of values. In this case, if we apply PCA or any kind of training model on this data, some important features can be "covered" by other feature just for the unit measure disparity. This is why is a good practice to \textbf{rescale} the data. The most used scalers used are the \textbf{Min-max Scaler} and \textbf{Standard Scaler}.\\
 \\
-The \textbf{Min-Max Scaler} trasnform the data such that the values of each column are distributed between a minimum value $m$ and a maximum value $M$. Let $X \in \mathbb{R}^{n \times p}$ be our feature matrix, with $X=[x_1, x_2, \dots, x_p]$. Let $X' \in \mathbb{R}$ be our scaled matrix with $X'=[x'_1, x'_2, \dots, x'_p]$. If $M_i = \max\{x_i\}$, $m_i = \min\{x_i\}$, $i \in \{1,  \dots,  p\}$ then
+The \textbf{Min-Max Scaler} trasnforms the data such that the values of each column are distributed between a minimum value $m$ and a maximum value $M$. Let $X \in \mathbb{R}^{n \times p}$ be our feature matrix, with $X=[x_1, x_2, \dots, x_p]$. Let $X' \in \mathbb{R}^{n \times p}$ be our scaled matrix with $X'=[x'_1, x'_2, \dots, x'_p]$. If $M_i = \max\{x_i\}$, $m_i = \min\{x_i\}$, $i \in \{1,  \dots,  p\}$ then
 \begin{equation}
     x'_i = \frac{x_i - m_i}{M_i-m_i} \quad i \in \{1,  \dots,  p\}    
 \end{equation}
@@ -185,3 +186,7 @@ scaler_std.fit(X_train)
 X_train_scaled_std = scaler_std.transform(X_train)
 X_test_scaled_std = scaler_std.transform(X_test)
 \end{lstlisting}
+As it is the case with most steps in our analysis pipeline, scaling is \textit{fitted} on \textbf{training data}, meaning that all the values used for the scaling are computed on the training dataset. When performing a prediction, test data should also undergo the same rescaling process using however the values fitted with the training data. Not doing so would result in what in data analysis is called \textit{data leakage}, meaning that information about test data \textit{leaked} into the training process.
+
+\subsection{Performing PCA on the dataset}
+PCA stands for \textit{principal component analysis} and is a technique used to reduce the dimensionality of the data (number of columns) while retaining as much information as possible.
