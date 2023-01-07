@@ -190,3 +190,60 @@ As it is the case with most steps in our analysis pipeline, scaling is \textit{f
 
 \subsection{Performing PCA on the dataset}
 PCA stands for \textit{principal component analysis} and is a technique used to reduce the dimensionality of the data (number of columns) while retaining as much information as possible.
+\\
+\\
+Let \(X \in \mathbb{R}^{n \times p}\) be our feature matrix and let
+\begin{equation}
+    \Sigma = \frac{1}{N- 1} \bar{X}^T\bar{X} \in \mathbb{R}^{p \times p}
+\end{equation}
+Be the \textit{Covariance matrix} of \(X\), where \(\Bar{X}\) is the \textit{centered} data matrix i.e. \(\Bar{X} = [x_1 - \Bar{x_1}, \dots x_p - \Bar{x_p}]\) (all the columns of \(X\) are centered w.r.t. their sample mean). \\
+Since the covariance matrix \(\Sigma\) of our centered data is a symmetric semi-definite positive matrix, we can compute its \textbf{eigendecomposition}:
+\begin{equation}
+    \Sigma = V \Lambda V^T
+\end{equation}
+with:
+\begin{equation}
+ V = [v_1, v_2, \dots, v_p] \in \mathbb{R}^{p \times p}, \qquad \Lambda = \begin{bmatrix}
+    \lambda_1 & \dots & 0 \\
+    \vdots & \ddots & 0 \\
+    0 & \dots & \lambda_n
+ \end{bmatrix}, \qquad \lambda_1 \geq \lambda_2 \geq \dots \geq 0.
+\end{equation}
+Then it can be shown that \textbf{the columns of \(V\) describe the directions of greater variance of data}, depending on the eigenvalues magnitude. This means that \(V\) is a new basis for \(\mathbb{R}^p\) and can be seen as a rotation of the data. Let \(x^{(i)}\in \mathbb{R}^p\), then \(y^{(i)} = V^T x^{(i)}\) is the same vector but represented with basis \(V\). By this token we could compute the rotation of each point in our original data \(X\) obtaining the matrix \(Y = \Bar{X}V\in \mathbb{R}^{n\times p}\). The resulting covariance matrix \(\Sigma_Y\) would be:
+\begin{equation}
+    \Sigma_Y = \frac{1}{N- 1} Y^T Y = V^T \Bar{X}^T \Bar{X} V = V^T \Sigma V = \Lambda
+\end{equation}
+This means that data written w.r.t. the new basis \(V\) has a diagonal covariance matrix \(\Lambda\) and the variance of \(Y\) w.r.t. the axis \(v_i\) is \(\lambda_i\). We call \(v_1, \dots , v_p\) \textbf{principal components} and \(\lambda_i\) is the \textbf{Explained variance} of the principal component \(v_i\). \\
+\\
+Since eigenvalues are computed in descreasing order, the first components of the data written in the basis \(V\) are the one with the most explained variance. Hence, truncating the rotated data matrix to the first \(k\) columns \((Y_k)\), causes a loss of explained variance that is quantified by the remaining \(\lambda_{k+ 1}\dots \lambda_p\) eigenvalues. The \textbf{percentage of explained variance} by the first \(k\) components is hence computed as:
+\begin{equation}
+     \texttt{ev\_ratio} = \frac{\sum \limits_{i= 1}^{k} \lambda_i}{\sum \limits_{i= 1}^{p} \lambda_i}. 
+\end{equation}
+\\
+In figure \ref{fig_PCA} percentage of explained variance is plotted against the number of components, and we compare the performance of the \textit{min-max scaler} against the \textit{standard scaler} with respect to the explained variance.
+
+\begin{lstlisting}[language=Python, caption= Data scaling]
+#Performing pca using min max scaler
+
+pca_mm = PCA()
+pca_mm.fit(X_train_scaled_mm)
+var_mm = pca_mm.explained_variance_ratio_
+
+#performing pca using std scaler
+
+pca_std = PCA()
+pca_std.fit(X_train_scaled_std)
+var_std = pca_std.explained_variance_ratio_
+
+n_components=20
+
+X_train_scaled_mm_pca = pca_mm.transform(X_train_scaled_mm)[:, :n_components]
+X_test_scaled_mm_pca = pca_mm.transform(X_test_scaled_mm)[:, :n_components]
+\end{lstlisting}
+If the number of components to keep is fixed to \texttt{n\_components = 20} then, as we can see in figure \ref{fig_PCA}, data scaled with the min-max scaler retains more variance than the standard scaler. In particular with \(20\) principal components the percentage of explained variance computed on data scaled with the \textit{min-max scaler} is \(\sim 83\%\)
+\begin{figure}[htb]
+    \centering
+    \includegraphics[scale=0.7]{pictures/variance_ratio_PCA.pdf}\
+    \caption{Percentage of explained variance comparison between scalers}
+    \label{fig_PCA}
+\end{figure}
