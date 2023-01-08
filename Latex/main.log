@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.7.4)  7 JAN 2023 18:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.7.4)  8 JAN 2023 18:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -825,65 +825,65 @@ Underfull \hbox (badness 10000) in paragraph at lines 53--56
 
  []
 
-<pictures/pieplot0_job.pdf, id=53, 225.7233pt x 225.7233pt>
+<pictures/pieplot0_job.pdf, id=61, 225.7233pt x 225.7233pt>
 File: pictures/pieplot0_job.pdf Graphic file (type pdf)
 <use pictures/pieplot0_job.pdf>
 Package pdftex.def Info: pictures/pieplot0_job.pdf  used on input line 59.
 (pdftex.def)             Requested size: 180.57887pt x 180.57887pt.
-<pictures/pieplot1_marital.pdf, id=54, 225.7233pt x 225.7233pt>
+<pictures/pieplot1_marital.pdf, id=62, 225.7233pt x 225.7233pt>
 File: pictures/pieplot1_marital.pdf Graphic file (type pdf)
 <use pictures/pieplot1_marital.pdf>
 Package pdftex.def Info: pictures/pieplot1_marital.pdf  used on input line 62.
 (pdftex.def)             Requested size: 180.57887pt x 180.57887pt.
-<pictures/pieplot2_education.pdf, id=55, 225.7233pt x 225.7233pt>
+<pictures/pieplot2_education.pdf, id=63, 225.7233pt x 225.7233pt>
 File: pictures/pieplot2_education.pdf Graphic file (type pdf)
 <use pictures/pieplot2_education.pdf>
 Package pdftex.def Info: pictures/pieplot2_education.pdf  used on input line 67.
 (pdftex.def)             Requested size: 180.57887pt x 180.57887pt.
-<pictures/pieplot3_default.pdf, id=56, 225.7233pt x 225.7233pt>
+<pictures/pieplot3_default.pdf, id=64, 225.7233pt x 225.7233pt>
 File: pictures/pieplot3_default.pdf Graphic file (type pdf)
 <use pictures/pieplot3_default.pdf>
 Package pdftex.def Info: pictures/pieplot3_default.pdf  used on input line 70.
 (pdftex.def)             Requested size: 180.57887pt x 180.57887pt.
 [3 <./pictures/pieplot0_job.pdf> <./pictures/pieplot1_marital.pdf>]
-<pictures/pieplot4_housing.pdf, id=97, 225.7233pt x 225.7233pt>
+<pictures/pieplot4_housing.pdf, id=105, 225.7233pt x 225.7233pt>
 File: pictures/pieplot4_housing.pdf Graphic file (type pdf)
 <use pictures/pieplot4_housing.pdf>
 Package pdftex.def Info: pictures/pieplot4_housing.pdf  used on input line 75.
 (pdftex.def)             Requested size: 180.57887pt x 180.57887pt.
-<pictures/pieplot5_loan.pdf, id=98, 225.7233pt x 225.7233pt>
+<pictures/pieplot5_loan.pdf, id=106, 225.7233pt x 225.7233pt>
 File: pictures/pieplot5_loan.pdf Graphic file (type pdf)
 <use pictures/pieplot5_loan.pdf>
 Package pdftex.def Info: pictures/pieplot5_loan.pdf  used on input line 78.
 (pdftex.def)             Requested size: 180.57887pt x 180.57887pt.
-<pictures/pieplot6_contact.pdf, id=99, 225.7233pt x 225.7233pt>
+<pictures/pieplot6_contact.pdf, id=107, 225.7233pt x 225.7233pt>
 File: pictures/pieplot6_contact.pdf Graphic file (type pdf)
 <use pictures/pieplot6_contact.pdf>
 Package pdftex.def Info: pictures/pieplot6_contact.pdf  used on input line 83.
 (pdftex.def)             Requested size: 180.57887pt x 180.57887pt.
-<pictures/pieplot7_month.pdf, id=100, 225.7233pt x 225.7233pt>
+<pictures/pieplot7_month.pdf, id=108, 225.7233pt x 225.7233pt>
 File: pictures/pieplot7_month.pdf Graphic file (type pdf)
 <use pictures/pieplot7_month.pdf>
 Package pdftex.def Info: pictures/pieplot7_month.pdf  used on input line 86.
 (pdftex.def)             Requested size: 180.57887pt x 180.57887pt.
-<pictures/pieplot8_day_of_week.pdf, id=101, 225.7233pt x 225.7233pt>
+<pictures/pieplot8_day_of_week.pdf, id=109, 225.7233pt x 225.7233pt>
 File: pictures/pieplot8_day_of_week.pdf Graphic file (type pdf)
 <use pictures/pieplot8_day_of_week.pdf>
 Package pdftex.def Info: pictures/pieplot8_day_of_week.pdf  used on input line 90.
 (pdftex.def)             Requested size: 180.57887pt x 180.57887pt.
-<pictures/pieplot9_poutcome.pdf, id=102, 225.7233pt x 225.7233pt>
+<pictures/pieplot9_poutcome.pdf, id=110, 225.7233pt x 225.7233pt>
 File: pictures/pieplot9_poutcome.pdf Graphic file (type pdf)
 <use pictures/pieplot9_poutcome.pdf>
 Package pdftex.def Info: pictures/pieplot9_poutcome.pdf  used on input line 93.
 (pdftex.def)             Requested size: 180.57887pt x 180.57887pt.
  [4 <./pictures/pieplot2_education.pdf> <./pictures/pieplot3_default.pdf> <./pictures/pieplot4_housing.pdf> <./pictures/pieplot5_loan.pdf> <./pictures/pieplot6_contact.pdf> <./pictures/pieplot7_month.pdf>]
-<pictures/scatterplot.pdf, id=173, 752.8125pt x 752.8125pt>
+<pictures/scatterplot.pdf, id=181, 752.8125pt x 752.8125pt>
 File: pictures/scatterplot.pdf Graphic file (type pdf)
 <use pictures/scatterplot.pdf>
 Package pdftex.def Info: pictures/scatterplot.pdf  used on input line 98.
 (pdftex.def)             Requested size: 414.04816pt x 414.04816pt.
  [5 <./pictures/pieplot8_day_of_week.pdf> <./pictures/pieplot9_poutcome.pdf> <./pictures/scatterplot.pdf>]
-<pictures/pieplot_unbalance.pdf, id=213, 225.7233pt x 225.7233pt>
+<pictures/pieplot_unbalance.pdf, id=221, 225.7233pt x 225.7233pt>
 File: pictures/pieplot_unbalance.pdf Graphic file (type pdf)
 <use pictures/pieplot_unbalance.pdf>
 Package pdftex.def Info: pictures/pieplot_unbalance.pdf  used on input line 112.
@@ -898,7 +898,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 117--122
 
  []
 
-<pictures/undersampling-oversampling.png, id=214, 1051.93pt x 509.905pt>
+<pictures/undersampling-oversampling.png, id=222, 1051.93pt x 509.905pt>
 File: pictures/undersampling-oversampling.png Graphic file (type png)
 <use pictures/undersampling-oversampling.png>
 Package pdftex.def Info: pictures/undersampling-oversampling.png  used on input line 125.
@@ -923,11 +923,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 215--219
 
  []
 
-<pictures/variance_ratio_PCA.pdf, id=296, 578.16pt x 289.08pt>
+<pictures/variance_ratio_PCA.pdf, id=304, 578.16pt x 289.08pt>
 File: pictures/variance_ratio_PCA.pdf Graphic file (type pdf)
 <use pictures/variance_ratio_PCA.pdf>
 Package pdftex.def Info: pictures/variance_ratio_PCA.pdf  used on input line 246.
 (pdftex.def)             Requested size: 404.70924pt x 202.35461pt.
+) (./classification.tex
+Underfull \hbox (badness 10000) in paragraph at lines 4--10
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--10
+
+ []
+
+[9]
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 11.
+ (c:/texlive/2021/texmf-dist/tex/latex/bbm-macros/ubbm.fd
+File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
+)
+Underfull \hbox (badness 10000) in paragraph at lines 16--23
+
+ []
+
 )
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -935,23 +954,23 @@ Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ superseded by `media9'.           @@
 (movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
 
-[9] [10 <./pictures/variance_ratio_PCA.pdf>] (./main.aux)
+[10 <./pictures/variance_ratio_PCA.pdf>] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 2A5A5F4946057B072DCE1B632FC2B4F4;1140.
+(rerunfilecheck)             Checksum: 6EE5EA1E882FB31D029BB171FF5916CD;1635.
  ) 
 Here is how much of TeX's memory you used:
- 16942 strings out of 478517
- 251909 string characters out of 5853902
- 1046569 words of memory out of 5000000
- 34402 multiletter control sequences out of 15000+600000
- 473678 words of font info for 116 fonts, out of 8000000 for 9000
+ 16975 strings out of 478517
+ 252716 string characters out of 5853902
+ 1046572 words of memory out of 5000000
+ 34422 multiletter control sequences out of 15000+600000
+ 474073 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,10n,80p,694b,1367s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (10 pages, 2147042 bytes).
+{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc} <c:/Users/giuli/.texlive2021/texmf-var/fonts/pk/ljfour/public/bbm/bbm10.600pk>{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (10 pages, 2161904 bytes).
 PDF statistics:
- 449 PDF objects out of 1000 (max. 8388607)
- 341 compressed objects within 4 object streams
- 113 named destinations out of 1000 (max. 500000)
- 127 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 468 PDF objects out of 1000 (max. 8388607)
+ 358 compressed objects within 4 object streams
+ 117 named destinations out of 1000 (max. 500000)
+ 143 words of extra memory for PDF output out of 10000 (max. 10000000)
 
