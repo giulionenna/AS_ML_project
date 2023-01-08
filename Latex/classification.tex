@@ -1,6 +1,7 @@
 Having preprocessed our data it's time to apply some classification methods in order to try to predict the outcome of a call on our test data.
 
-\subsection{Decision Trees and Random Forest}
+\subsection{Theoretical background}
+\subsubsection*{Decision Trees}
 Let \(\chi\) be our feature space (meaning the space in which features live in, e.g. \(\chi = \mathbb{R}^p\)). The main idea behind a decision tree is to partition the feature space such that data points will be classified according to the partition to which they belong. \\
 \\
 This method is called decision \textit{tree} because it can be seen as a binary tree that mimics the splitting process of the feature space where each node \(\nu\) represents a (sub)split of the space and each leaf \(\omega\) represents a subset \(R_\omega \subseteq \chi\). Hence each leaf of the tree is associated to a classifier \(g^\omega\) that (in the classification case) gives as output the class relative to that particular partition of the feature space
@@ -26,3 +27,47 @@ Let \(\nu\) be an internal node of a decision tree. For each node we can assign 
 \end{eqnarray*}
 \\
 Hence we can define the following algorithm:
+\begin{algorithm}[H]\caption{Greedy Decision Tree}
+    \label{algo:greedy}
+    \begin{algorithmic}
+    \State Imput: Tree node \(\nu\), \(\sigma_\nu \subset \tau\)
+    \If{The terminal condition is met(\(\nu\) is a leaf)}
+    \State define \(g^\nu = \arg\max_{z \in \{0, \dots c- 1\}} = \frac{1}{| \sigma_\nu |}  \sum \limits_{(x_i, y_i) \in R_\nu}^{} \mathbbm{1}\{y_i = z\} \)
+    \EndIf
+    \State Search for the best splitting rule \(s\)
+    \State Generate \(\sigma_T\) and \(\sigma_F\)
+    \State Generate \(\nu_T\) and \(\nu_F\)
+    \State \(\mathbb{T}_{\nu_T} \gets \texttt{Greedy Decision Tree}(\nu_T, \sigma_T)\) (Left subtree)
+    \State \(\mathbb{T}_{\nu_F} \gets \texttt{Greedy Decision Tree}(\nu_F, \sigma_F)\) (Right subtree)\\
+    \Return \(\mathbb{T}_\nu\) (subtree starting from \(\nu\))
+    \end{algorithmic}            
+\end{algorithm}
+
+\textbf{But how the best splitting rule is defined?} Given a node \(\nu\) and the relative \(\sigma_\nu \subseteq \tau\), since the loss is additive with respect to regions of \(\chi\), we can compute the contribution of \(\nu\) to the loss:
+\begin{equation}
+    \label{loss_not_splitted}
+    \frac{1}{n}  \sum \limits_{i= 1}^{n} \mathbbm{1}\{x_i \in \sigma_\nu\}\text{Loss}(y_i, g^\nu(x_i))
+\end{equation}
+Alternatively we can compute the contribution of \(\nu\) to the loss if splitted into \(\sigma_T\) and \(\sigma_F\)
+\begin{equation}
+    \label{loss_splitted}
+    \frac{1}{n}  \sum \limits_{i= 1}^{n} \mathbbm{1}\{x_i \in \sigma_T\}\text{Loss}(y_i, g^T(x_i))\: +\: \frac{1}{n}  \sum \limits_{i= 1}^{n} \mathbbm{1}\{x_i \in \sigma_F\}\text{Loss}(y_i, g^F(x_i))
+\end{equation}
+Where \(g^T\) and \(g^F\) computed in a \textit{greedy way}, meaning that \(\sigma_T\) and \(\sigma_F\) are seen as leaves. Since \ref{loss_splitted} is always less or equal than \ref{loss_not_splitted}, in trying to find the best splitting rule our objective is to minimize \ref{loss_splitted}. Difference between the two quantities can be used in the terminal condition: if splitting the node \(\nu\) does not produce a sensible reduction in loss then the algorithm can stop. 
+\\
+\\
+Since ours is a classification task, \ref{loss_splitted} can be written as:
+\begin{equation}
+    \frac{1}{|\sigma_T|}  \sum \limits_{(x_i, y_i) \in \sigma_T}^{} \mathbbm{1} \{y_i \neq y_T^*\}\: +\: \frac{1}{|\sigma_F|}  \sum \limits_{(x_i, y_i) \in \sigma_F}^{} \mathbbm{1} \{y_i \neq y_F^*\}
+\end{equation}
+Where \(y_T^*\) and \(y_F^*\) are the majority classes in \(\sigma_T\) and \(\sigma_F\) respectively. Morover, since:
+\begin{equation}
+    \frac{1}{|\sigma_T|}  \sum \limits_{(x_i, y_i) \in \sigma_T}^{} \mathbbm{1} \{y_i \neq y_T^*\} = 1 - \frac{1}{|\sigma_T|}  \sum \limits_{(x_i, y_i) \in \sigma_T}^{} \mathbbm{1} \{y_i = y_T^*\} = 1- p_z^{\sigma_T}
+\end{equation}
+Where \(p_z^{\sigma_T}\) is the ratio of the majoirty class in \(\sigma_T\) relative to the other classes and can be seen as an \textbf{Impurity index}. The minimization of the loss at each split can thus be seen as the minimization of an impority index. Hence various impurity indexes can be used such as Entropy impurity, and the Gini index.
+\subsubsection*{Random Forests}
+Assume we could have an ensamble of training sets \(\tau_1, \dots , \tau_B\) indipendent and identically distributed. Let \(g_{\tau_b}\) the classification trees modeled on each training set. Then:
+\begin{equation}
+    g_{\text{maj}}(x) = \argmax_{z \in \{0, \dots, c-1\}}  \sum \limits_{b= 1}^{B} \mathbbm{1}\{g_{\tau_b}(x) = z\}
+\end{equation} 
+would be the result of a classification function that is the result of a "voting mechanism" where each \(g_{\tau_b}\) contributes to the vote and the majority class would win. The more independent training sets we have, the more the resulting \(g_{\text{maj}}\) would be "wise". Obviously in a real world envoirment we wouldn't have 

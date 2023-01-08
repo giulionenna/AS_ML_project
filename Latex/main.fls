@@ -1315,12 +1315,12 @@ INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/bbm/bbm5.tfm
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out
+INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc
 INPUT c:/Users/giuli/.texlive2021/texmf-var/fonts/pk/ljfour/public/bbm/bbm10.600pk
 INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc
 INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
 INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
-INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
@@ -1328,6 +1328,7 @@ INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb
+INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi5.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi7.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb
