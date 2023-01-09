@@ -100,7 +100,7 @@ In order to gain useful insights about some of the attributes featured in the da
 \end{figure}
 From the scatterplot we don't see any particular correlation between numerical features. Yet, as for the coloring of the data, one can notice that the attribute \texttt{campaign} discriminates pretty well the outcome. As a matter of fact people that recieved a lot of calls from the call center never buy the product that the bank is trying to sell. This information alone could be of some value for reducing cost and better targeting calls.
 
-\subsection{Dataset splitting}
+\subsection{Dataset splitting} \label{dataset_splitting}
 After exploring data, the first thing to do is to perform a split of our dataset into training and test set.
 \begin{lstlisting}[language=Python, caption= Data splitting]
     df_train, df_test = train_test_split(df_enc, test_size=0.1, random_state=42)

@@ -1,0 +1,18 @@
+Before presenting the results of our analysis, a brief overview of the methods used to evaluate our classification methods is needed. \\
+\\
+Since we are dealing with an unbalanced classification problem, the usual "accuracy" score is not suited for actually asses the quality of our classification. As said in \ref{dataset_splitting} a naive classifier that classifies every entry as "unsuccesful call" would have a \(\sim 90\%\) accuracy due to the unbalanced nature of the dataset.\\
+\\
+What we are really interested in is "how much our classifier outperforms randomply calling people" meaning that we are interested in a deeper analysis of our \textbf{confusion matrix}.
+\\
+The class we focus on is the "successful call" class, meaning that we are intrested in accuracy indicators about calls to clients that successfully subscribed to a bank account. We can introduce two measure of accuracy about our class:
+\begin{description}
+    \item [\(\bullet\)] the \textit{precision} is the fraction of all calls classified as succssful that are actually successful: \begin{equation}
+        \text{precision} = \frac{\text{tp}}{\text{tp}+\text{fp}}
+    \end{equation}
+    \item[\(\bullet\)] The \textit{recall} is the fracion of all successfull calls that are correctly classified as such. \begin{equation*}
+        \text{recall} = \frac{\text{tp}}{\text{tp} + \text{fn}}
+    \end{equation*} 
+    \item[\(\bullet\)] The \(F_1\) score is the harmonic mean of precision and recall.
+\end{description}
+Where \textit{tp, fp} and \textit{fn} are short for \textit{true positive, false positive} and \textit{false negative} respectively.
+The above mentioned naive classifier would score \(0\) for all three measures.

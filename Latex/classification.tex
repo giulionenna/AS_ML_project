@@ -1,6 +1,6 @@
-Having preprocessed our data it's time to apply some classification methods in order to try to predict the outcome of a call on our test data.
+What will follow is a brief theoretical overview of all the classification models used on the data, with the objective of classifing if a call will be successful or not w.r.t. the features provided to the model.
 
-\subsection{Theoretical background}
+\subsection{From Decision Trees to Random Forests}
 \subsubsection*{Decision Trees}
 Let \(\chi\) be our feature space (meaning the space in which features live in, e.g. \(\chi = \mathbb{R}^p\)). The main idea behind a decision tree is to partition the feature space such that data points will be classified according to the partition to which they belong. \\
 \\
@@ -68,6 +68,12 @@ Where \(p_z^{\sigma_T}\) is the ratio of the majoirty class in \(\sigma_T\) rela
 \subsubsection*{Random Forests}
 Assume we could have an ensamble of training sets \(\tau_1, \dots , \tau_B\) indipendent and identically distributed. Let \(g_{\tau_b}\) the classification trees modeled on each training set. Then:
 \begin{equation}
+    \label{majority_classifier}
     g_{\text{maj}}(x) = \argmax_{z \in \{0, \dots, c-1\}}  \sum \limits_{b= 1}^{B} \mathbbm{1}\{g_{\tau_b}(x) = z\}
 \end{equation} 
-would be the result of a classification function that is the result of a "voting mechanism" where each \(g_{\tau_b}\) contributes to the vote and the majority class would win. The more independent training sets we have, the more the resulting \(g_{\text{maj}}\) would be "wise". Obviously in a real world envoirment we wouldn't have 
+would be the result of a classification function that is the result of a "voting mechanism" where each \(g_{\tau_b}\) contributes to the vote and the majority class would win. The more independent training sets we have, the more the resulting \(g_{\text{maj}}\) would be "wise". Obviously in a real world envoirment we would never have such luxury of having i.i.d. training sets, hence we have to resort to \textbf{Bootstrapping}, meaning that from one training set \(\tau\) we generate \(B\) training sets \(\tau^*_1, \dots , \tau^*_B\) sampling from \(\tau\). \\
+\\
+Depending on the dimensions of the original dataset, using bootstrapping makes us loose independency between training sets. Hence trees generated from each training set will be "correlated\footnote{Here the word \textit{correlation} is slightly misused since we do not actually mean correlation in a statistical sense buy more in an heuristical sense.}" meaning that they would be similar since they are generated basically from the same data. In order to \textit{decorrelate} trees generated from \(\tau^*_1, \dots , \tau^*_B\) we use a simple trick: \textbf{at each split of the tree we only consider a subset of \(m< p\) features instead of the full feature set.}
+\\
+\\
+This simple trick will generate "randomized" trees that are "decorrelated" from each other. After generating \(\{g_{\tau^*_b}\}_{b = 1, \dots B}\) random trees we can consider the "majority classifier" as seen in \ref{majority_classifier}: we have generated a \textbf{Random Forest.}
