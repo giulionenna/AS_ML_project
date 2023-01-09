@@ -1323,6 +1323,11 @@ INPUT results.tex
 INPUT ./results.tex
 INPUT ./results.tex
 INPUT results.tex
+INPUT ./pictures/random_forest_score.pdf
+INPUT ./pictures/random_forest_score.pdf
+INPUT pictures/random_forest_score.pdf
+INPUT ./pictures/random_forest_score.pdf
+INPUT ./pictures/random_forest_score.pdf
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out
