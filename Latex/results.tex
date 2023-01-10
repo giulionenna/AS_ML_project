@@ -97,3 +97,37 @@ rf_scores = precision_recall_fscore_support(y_test,
         \hline
     \end{tabular}
 \end{center}
+\subsection{Results in Logistic Regression}
+Logistic regression in the binary case does not have much hyperparameters to experiment with. In solving the likelyhood maximization problem we can choose to use whether an \(l_1\) or \(l_2\) norm, but through experimentation this parameter does not affect results. \\
+What instead affect the accuracy is whether we use the PCA transformed dataset as training data or not. Not only computation with PCA reduced data are faster but also more accurate. 
+
+\begin{lstlisting}[language=Python, caption= Deploying logistic regression]
+from sklearn.linear_model import LogisticRegression
+
+clf = LogisticRegression(random_state=42, solver='liblinear')
+clf.fit(X_train_scaled_mm_pca, y_train)
+
+conf_matrix = confusion_matrix(y_test, clf.predict(X_test_scaled_mm_pca))
+rf_scores = precision_recall_fscore_support(y_test,
+                                            clf.predict(X_test_scaled_mm_pca))
+\end{lstlisting}
+Deploying the above mentioned code yeld the following accuracy results:
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Precision & Recall & \(F_1\) score \\
+        \hline
+        0.30 & 0.70 & 0.42 \\
+        \hline
+    \end{tabular}
+    \quad     
+    \begin{tabular}{|c|c|c|}
+        \hline
+         True / Pred & Unsuccesful & Successful \\
+        \hline
+        Unsuccesful & 2896 & 761 \\
+        \hline
+        Successful & 140 & 322\\
+        \hline
+    \end{tabular}
+\end{center}

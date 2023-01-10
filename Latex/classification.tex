@@ -77,3 +77,21 @@ Depending on the dimensions of the original dataset, using bootstrapping makes u
 \\
 \\
 This simple trick will generate "randomized" trees that are "decorrelated" from each other. After generating \(\{g_{\tau^*_b}\}_{b = 1, \dots B}\) random trees we can consider the "majority classifier" as seen in \ref{majority_classifier}: we have generated a \textbf{Random Forest.}
+\subsection{Logistic Regression}
+Let \(Y_i\) be the random variable associated with the responce \(y_i\) of the i-th data entry (successful/unsuccessful call). Assume \(Y_i\) has a \textit{Bernoulli} distribution:
+\begin{equation}
+    Y_i \sim \text{Ber}(\pi_i)
+\end{equation}
+Using the \textbf{Generalized Linear Models} framework, we assume that \(\pi_i\) is a function of a linear combination of the parameters:
+\begin{equation}
+    \pi_i = \mathbb{E}[Y_i] = h(x_i^T\beta) = \frac{1}{1- e^{- x_i^T\beta}}.
+\end{equation}
+As in linear regression, we can find a suitable \(\beta\) by maximizing the \textit{log-likelihood} function of our data. After some computation we obtain:
+\begin{equation}
+    -\frac{1}{n} \log[f(y|\beta,X)] = \frac{1}{n}  \sum \limits_{i= 1}^{n} (1- y_i) x_i^T \beta + \log(1+ e^{- x_i^T\beta})
+\end{equation}
+Which is a \textit{convex minimization problem}, thus easy to solve. In solving this minimization we can also introduce a \textit{regularization argument} using \(l_1\), \(l_2\) norm or both on \(\beta\).\\
+After computing the optimal \(\hat{\beta}\), we can then deploy our classificator which is based on computing the probability of each outcome (\(y_i\) successful/unsuccessful)
+\begin{equation}
+    g_\tau(x_i) = \argmax_{y \in \{0, 1\}} \big[ (h(x_i^T\hat{\beta}))^{y}(1-h(x_i^T\hat{\beta}))^{1- y} \big] 
+\end{equation}
