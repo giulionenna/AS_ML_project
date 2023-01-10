@@ -83,7 +83,7 @@ rf_scores = precision_recall_fscore_support(y_test,
         \hline
         Precision & Recall & \(F_1\) score \\
         \hline
-        0.30 & 0.70 & 0.41 \\
+        0.34 & 0.65 & 0.45 \\
         \hline
     \end{tabular}
     \quad     
@@ -117,7 +117,7 @@ Deploying the above mentioned code yeld the following accuracy results:
         \hline
         Precision & Recall & \(F_1\) score \\
         \hline
-        0.30 & 0.70 & 0.42 \\
+        0.28 & 0.70 & 0.40 \\
         \hline
     \end{tabular}
     \quad     
@@ -125,9 +125,63 @@ Deploying the above mentioned code yeld the following accuracy results:
         \hline
          True / Pred & Unsuccesful & Successful \\
         \hline
-        Unsuccesful & 2896 & 761 \\
+        Unsuccesful & 2856 & 801 \\
         \hline
-        Successful & 140 & 322\\
+        Successful & 138 & 324\\
         \hline
     \end{tabular}
 \end{center}
+
+\subsection{Results in K-Nearest Neighbors Classification}
+The most important hyperparameter to optimize for the K-NN classification is the number of neighbors \(K\). The following code snippet is used to search for the best number of neighbors, according to the \(F_1\) score:
+\begin{lstlisting}[language=Python, caption= Optimizing for number of neighbors]
+from sklearn.neighbors import KNeighborsClassifier
+neigh = np.arange(1, 16)
+neigh_score= []
+
+for n in neigh:
+    clf = KNeighborsClassifier(n_neighbors = n)
+    clf.fit(X_train_scaled_mm_pca, y_train)
+    score = f1_score(y_true=y_test, y_pred = clf.predict(X_test_scaled_mm_pca))
+    neigh_score.append([n, score])
+scores_n = [n[1] for n in neigh_score]
+best_neigh = neigh_score[np.argmax(scores_n)][0]
+    \end{lstlisting}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[scale=0.7]{pictures/neigh_score.pdf}\
+    \caption{Comparing \(K\) impact on \(F_1\) score in K-NN classification}
+    \label{fig_neigh_score}
+\end{figure}
+As we can see in figure \ref{fig_neigh_score} we obtain the best score for \(K= 8\) neighbors. Deploying the model with \(K= 8\) yelds:
+\begin{lstlisting}[language=Python, caption= Deploying K-NN]
+clf = KNeighborsClassifier(n_neighbors=best_neigh)
+clf.fit(X_train_scaled_mm_pca, y_train)
+
+conf_matrix = confusion_matrix(y_test, clf.predict(X_test_scaled_mm_pca))
+kn_scores = precision_recall_fscore_support(y_test, clf.predict(X_test_scaled_mm_pca))
+display(kn_scores)
+display(conf_matrix)   
+\end{lstlisting}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Precision & Recall & \(F_1\) score \\
+        \hline
+        0.26 & 0.67 & 0.38 \\
+        \hline
+    \end{tabular}
+    \quad     
+    \begin{tabular}{|c|c|c|}
+        \hline
+         True / Pred & Unsuccesful & Successful \\
+        \hline
+        Unsuccesful & 2797 & 860 \\
+        \hline
+        Successful & 152 & 310\\
+        \hline
+    \end{tabular}
+\end{center}
+

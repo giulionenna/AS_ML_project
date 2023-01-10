@@ -95,3 +95,10 @@ After computing the optimal \(\hat{\beta}\), we can then deploy our classificato
 \begin{equation}
     g_\tau(x_i) = \argmax_{y \in \{0, 1\}} \big[ (h(x_i^T\hat{\beta}))^{y}(1-h(x_i^T\hat{\beta}))^{1- y} \big] 
 \end{equation}
+
+\subsection{K-Nearest Neighbors Classification}
+K-Nearest Neighborst classification makes use of a distance metric in order to compute, as the name suggests, the \(k\) nearest neighbors of a given data point \(x\). Thus, given \(x\) we could define the set of the \(K\) nearest neighbors of \(x\) according to the chosen metric. 
+\begin{equation*}
+    \tau(x) =\{ (x_{(1)}, y_{(1)}), \dots (x_{(K)}, y_{(K)})\}
+\end{equation*}
+Then the \textit{K-nearest neighbors} classification rule classifies \(x\) according to the most frequently occurring class labels in \(\tau(x)\).
