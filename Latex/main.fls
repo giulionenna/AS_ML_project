@@ -1335,6 +1335,11 @@ INPUT ./pictures/random_forest_score.pdf
 INPUT pictures/random_forest_score.pdf
 INPUT ./pictures/random_forest_score.pdf
 INPUT ./pictures/random_forest_score.pdf
+INPUT ./pictures/ada_score.pdf
+INPUT ./pictures/ada_score.pdf
+INPUT pictures/ada_score.pdf
+INPUT ./pictures/ada_score.pdf
+INPUT ./pictures/ada_score.pdf
 INPUT ./pictures/neigh_score.pdf
 INPUT ./pictures/neigh_score.pdf
 INPUT pictures/neigh_score.pdf

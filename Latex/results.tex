@@ -97,6 +97,66 @@ rf_scores = precision_recall_fscore_support(y_test,
         \hline
     \end{tabular}
 \end{center}
+
+\subsection{Results in AdaBoost}
+The Boosting algorithm used is the one implemented in \texttt{sklearn}. The weak learner used for each boosting round is a Decision Tree with \texttt{max\_depth=2}. The most important hyperparameter to optimize ofr here is the number of boosting rounds \(B\), meaningh the number of weak learners used to compute the classifier. The following code is used to check the \(F_1\) score for each value of \(B\) boosting rounds:
+\begin{lstlisting}[language=Python, caption= Optimizing the number of Boosting rounds for AdaBoost]
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
+
+n_trees = np.array([5, 10, 25, 50, 75, 100, 150])
+ada_score = []
+for n in n_trees:
+    clf = AdaBoostClassifier(
+        estimator=DecisionTreeClassifier(max_depth =2),
+        random_state=42,
+        n_estimators=n,
+        learning_rate=0.95)
+    clf.fit(X_train_scaled_mm, y_train)
+    score = f1_score(y_true=y_test, y_pred = clf.predict(X_test_scaled_mm))
+    ada_score.append([n, score])
+scores_n = [n[1] for n in ada_score]
+best_ada  =ada_score[np.argmax(scores_n)][0]
+\end{lstlisting}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[scale=0.7]{pictures/ada_score.pdf}\
+    \caption{Comparing \# of boosting rounds on \(F_1\) score in AdaBoost}
+    \label{fig_random_forest_score}
+\end{figure}
+\begin{lstlisting}[language=Python, caption= Deploying Adaboost with the optimal number of boosting rounds]
+from sklearn.ensemble import AdaBoostClassifier
+clf = AdaBoostClassifier(
+    estimator=DecisionTreeClassifier(max_depth =2),
+    random_state=42,
+    n_estimators=best_ada,
+    learning_rate=0.95)
+clf.fit(X_train_scaled_mm, y_train)
+
+conf_matrix = confusion_matrix(y_test, clf.predict(X_test_scaled_mm))
+ada_scores = precision_recall_fscore_support(y_test, clf.predict(X_test_scaled_mm))
+display(ada_scores)
+display(conf_matrix)
+\end{lstlisting}
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Precision & Recall & \(F_1\) score \\
+        \hline
+        0.34 & 0.66 & 0.45 \\
+        \hline
+    \end{tabular}
+    \quad     
+    \begin{tabular}{|c|c|c|}
+        \hline
+         True / Pred & Unsuccesful & Successful \\
+        \hline
+        Unsuccesful & 3070 & 587 \\
+        \hline
+        Successful & 156 & 306\\
+        \hline
+    \end{tabular}
+\end{center}
 \subsection{Results in Logistic Regression}
 Logistic regression in the binary case does not have much hyperparameters to experiment with. In solving the likelyhood maximization problem we can choose to use whether an \(l_1\) or \(l_2\) norm, but through experimentation this parameter does not affect results. \\
 What instead affect the accuracy is whether we use the PCA transformed dataset as training data or not. Not only computation with PCA reduced data are faster but also more accurate. 
