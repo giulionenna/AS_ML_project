@@ -77,6 +77,25 @@ Depending on the dimensions of the original dataset, using bootstrapping makes u
 \\
 \\
 This simple trick will generate "randomized" trees that are "decorrelated" from each other. After generating \(\{g_{\tau^*_b}\}_{b = 1, \dots B}\) random trees we can consider the "majority classifier" as seen in \ref{majority_classifier}: we have generated a \textbf{Random Forest.}
+
+\subsection{Boosting}
+The practice of \textbf{Boosting}, as the name implies, is an iterative method used to boost the performances of a \textit{Weak learner} by generating other weak learners. \\
+\\
+We call a learner \textit{Weak} if it is a classification/regression model that can be trained very easily at the expence of accuracy (e.g. a decision tree with depth equal to 2 is a weak learner).\\
+\\
+Let \(g_0\) be a weak learner, then our objective is to find another weak learner \(h_1 \in \mathcal{H}\) such that:
+\begin{equation}
+    h_1 = \argmin_{h_1 \in \mathcal{H}} \frac{1}{n}  \sum \limits_{(x_i, y_i) \in \tau}^{} \text{loss}(g_0(x_i) + \gamma h_1(x_i), y_i) 
+\end{equation}
+Once we find \(h_1\) we can define \(g_1 = g_0 + h_1\) and by the same token we can find \(h_2\) and so on. Hence after \(B\) boosting steps we obtain:
+\begin{equation}
+    g_B(x) = g_0(x) +  \sum \limits_{i= 1}^{B} \gamma h_i(x)
+\end{equation}
+In a classification setting, where \(g_0(x) \in \{- 1, + 1\}\) and \(h_i(x) \in \{- 1, + 1\}, i= 1\dots B\) then:
+\begin{equation}
+    g_B(x) = \sign \left[g_0(x) +  \sum \limits_{i= 1}^{B} \gamma_i h_i(x)\right]
+\end{equation}
+To compute \(g_B(x)\) we can use the \textbf{AdaBoost algorithm} that deploys an "adaptive" boosting algorithm by wheighting the loss on the points. This algorithm arises from defining \(\text{Loss}(y, \hat{y}) = e^{y\hat{y}}\). 
 \subsection{Logistic Regression}
 Let \(Y_i\) be the random variable associated with the responce \(y_i\) of the i-th data entry (successful/unsuccessful call). Assume \(Y_i\) has a \textit{Bernoulli} distribution:
 \begin{equation}
