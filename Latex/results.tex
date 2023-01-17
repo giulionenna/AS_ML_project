@@ -2,7 +2,7 @@ Before presenting the results of our analysis, a brief overview of the methods u
 \\
 Since we are dealing with an unbalanced classification problem, the usual "accuracy" score is not suited for actually asses the quality of our classification. As said in \ref{dataset_splitting} a naive classifier that classifies every entry as "unsuccesful call" would have a \(\sim 90\%\) accuracy due to the unbalanced nature of the dataset.\\
 \\
-What we are really interested in is "how much our classifier outperforms randomply calling people" meaning that we are interested in a deeper analysis of our \textbf{confusion matrix}.
+What we are really interested in is "how much our classifier outperforms randomly calling people" meaning that we are interested in a deeper analysis of our \textbf{confusion matrix}.
 \\
 The class we focus on is the "successful call" class, meaning that we are intrested in accuracy indicators about calls to clients that successfully subscribed to a bank account. We can introduce two measure of accuracy about our class:
 \begin{description}
@@ -54,17 +54,14 @@ The following code was used to search for the best parameters:
     scores_ml =  [s[1] for s in min_sample_leaf_score]
     best_min_sample_leaf = min_sample_leaf_score[np.argmax(scores_ml)][0]
 \end{lstlisting}
-
-And plotting the impact of each parameter of \(F_1\) score:
-
+We then plot the impact of each parameter on \(F_1\) score.
 \begin{figure}[htb]
     \centering
     \includegraphics[scale=0.7]{pictures/random_forest_score.pdf}\
     \caption{Comparing parameters impact on \(F_1\) score on Random Forests}
     \label{fig_random_forest_score}
 \end{figure}
-
-As it is evident in figure \ref{fig_random_forest_score} we can see that the \texttt{max\_depth} parameter heavily influences the \(F_1\) score. If we then train a model using \texttt{max\_depth = 11} and \texttt{min\_sample\_leaf = 10}, we could compute the accuracy measures and the confusion matrix:
+As it is evident in figure \ref{fig_random_forest_score} we can see that the \texttt{max\_depth} parameter heavily influences the \(F_1\) score. If we then train a model using \texttt{max\_depth = 11} and \texttt{min\_sample\_leaf = 15}, we could compute the accuracy measures and the confusion matrix:
 
 \begin{lstlisting}[language=Python, caption= Deploying the Random forest with the best parameters]
 from sklearn.metrics import precision_recall_fscore_support

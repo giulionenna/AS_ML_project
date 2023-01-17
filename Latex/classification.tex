@@ -4,7 +4,7 @@ What will follow is a brief theoretical overview of all the classification model
 \subsubsection*{Decision Trees}
 Let \(\chi\) be our feature space (meaning the space in which features live in, e.g. \(\chi = \mathbb{R}^p\)). The main idea behind a decision tree is to partition the feature space such that data points will be classified according to the partition to which they belong. \\
 \\
-This method is called decision \textit{tree} because it can be seen as a binary tree that mimics the splitting process of the feature space where each node \(\nu\) represents a (sub)split of the space and each leaf \(\omega\) represents a subset \(R_\omega \subseteq \chi\). Hence each leaf of the tree is associated to a classifier \(g^\omega\) that (in the classification case) gives as output the class relative to that particular partition of the feature space
+This method is called decision \textit{tree} because it can be seen as a binary tree that mimics the splitting process of the feature space where each node \(\nu\) represents a (sub)split of the space and each leaf \(\omega\) represents a subset \(R_\omega \subseteq \chi\). Hence each leaf of the tree is associated to a classifier \(g^\omega\) that (in the classification case) gives as output the class relative to that particular partition of the feature space.
 \\
 \\
 Let \(\tau = \{x_i, y_i \}_{i = 1, \dots ,n}\) be our training set, then our classifier will look like:
@@ -16,10 +16,10 @@ And our loss function can be written as:
     l_\tau(g) = \frac{1}{n}  \sum \limits_{i= 0}^{n}\text{Loss}(y_i, g(x_i)) =  \sum \limits_{\omega}^{} \frac{1}{n} \underbrace{\sum \limits_{i=1}^{n} \mathbbm{1}\{x_i  \in R_\omega \} \text{Loss}(y_i, g^\omega(x_i))}_{\text{Loss contribution of each leaf }\omega}
 \end{equation}
 \\
-This means that \textbf{total loss can be seen as the sum of the loss on each region (leaf) of the feature space}. Hence, since minimizing loss finding the optimal partitioning would be an \textit{np-hard} problem, we can formulate a \textit{greedy} algorithm that tries to split recursively our feature space trying to minimize loss at each step.
+This means that \textbf{total loss can be seen as the sum of the loss on each region (leaf) of the feature space}. Hence, since minimizing loss by finding the optimal partitioning would be an \textit{np-hard} problem, we can formulate a \textit{greedy} algorithm that tries to split recursively our feature space trying to minimize loss at each step.
 \\
 \\
-Let \(\nu\) be an internal node of a decision tree. For each node we can assign a region \(R_\nu \subseteq \chi \) and a subset of the training training set containing points that live in that region \(\sigma_\nu = \{(x, y) \in \tau
+Let \(\nu\) be an internal node of a decision tree. For each node we can assign a region \(R_\nu \subseteq \chi \) and a subset of the training  set containing points that live in that region \(\sigma_\nu = \{(x, y) \in \tau
 \text{:}  x \in R^\nu\}\). To each node is associated a splitting rule \(s\) that can define two subset of the training set:
 \begin{eqnarray*}
     \sigma_T = \{(x, y) \in \sigma \text{ s.t } s(x) = \texttt{True}\}\\
@@ -109,7 +109,7 @@ As in linear regression, we can find a suitable \(\beta\) by maximizing the \tex
 \begin{equation}
     -\frac{1}{n} \log[f(y|\beta,X)] = \frac{1}{n}  \sum \limits_{i= 1}^{n} (1- y_i) x_i^T \beta + \log(1+ e^{- x_i^T\beta})
 \end{equation}
-Which is a \textit{convex minimization problem}, thus easy to solve. In solving this minimization we can also introduce a \textit{regularization argument} using \(l_1\), \(l_2\) norm or both on \(\beta\).\\
+Which is a \textit{\textbf{convex} minimization problem}, thus easy to solve. In solving this minimization we can also introduce a \textit{regularization argument} using \(l_1\), \(l_2\) norm or both on \(\beta\).\\
 After computing the optimal \(\hat{\beta}\), we can then deploy our classificator which is based on computing the probability of each outcome (\(y_i\) successful/unsuccessful)
 \begin{equation}
     g_\tau(x_i) = \argmax_{y \in \{0, 1\}} \big[ (h(x_i^T\hat{\beta}))^{y}(1-h(x_i^T\hat{\beta}))^{1- y} \big] 

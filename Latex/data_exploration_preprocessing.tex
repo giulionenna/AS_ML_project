@@ -116,7 +116,7 @@ As it is the case with some binary classification datasets, our data is heavly b
 
 As we can see $\sim 90\%$ of our data is biased towards the majority class (no). If we tried to feed the data as it is to any classification model the resulting classifier would seem to be "accurate" even if it really isn't.\\
 \\
-As a simple example we could think of a classifier that classifies every data entry as "no" no matter of the features. This naive classifier, tested with our heavily biased data, would result to have $\sim 90\%$ accuracy, the same percentage of the majority class with respect to the whole dataset.\\
+As a simple example we could think of a classifier that classifies every data entry as "unsuccesful call" no matter of the features. This naive classifier, tested with our heavily biased data, would result to have $\sim 90\%$ accuracy, the same percentage of the majority class with respect to the whole dataset.\\
 \\
 Various techniques can be used in order to solve this problem, among them there are \textbf{Oversampling} and \textbf{Undersampling}. 
 
@@ -126,7 +126,7 @@ Various techniques can be used in order to solve this problem, among them there 
 
     \caption*{Visual exapmple of Oversampling and Undersampling}
 \end{figure}
-As the name suggests, oversampling takes place when the minority class is used to generate new bootstrapped data to balance classess. On the other hand undersampling consists in randomly sampling from the majority class enough samples such that the two classes are balanced. In our case, since we have enough data, we can opt for undersampling in order to balance classes.
+As the name suggests, oversampling takes place when the minority class is used to generate new bootstrapped data to balance classess. On the other hand, undersampling consists in randomly sampling from the majority class enough samples such that the two classes are balanced. In our case, since we have enough data, we can opt for undersampling in order to balance classes.
 
 \begin{lstlisting}[language=Python, caption= Data rebalancing]
 response = df_train['y_yes']
@@ -161,15 +161,15 @@ One can notice that only the training tast was subject to the rebalancing proces
 The encoded dataset is characterized by features with very different scale/range  of values. In this case, if we apply PCA or any kind of training model on this data, some important features can be "covered" by other feature just for the unit measure disparity. This is why is a good practice to \textbf{rescale} the data. The most used scalers used are the \textbf{Min-max Scaler} and \textbf{Standard Scaler}.\\
 \\
 The \textbf{Min-Max Scaler} trasnforms the data such that the values of each column are distributed between a minimum value $m$ and a maximum value $M$. Let $X \in \mathbb{R}^{n \times p}$ be our feature matrix, with $X=[x_1, x_2, \dots, x_p]$. Let $X' \in \mathbb{R}^{n \times p}$ be our scaled matrix with $X'=[x'_1, x'_2, \dots, x'_p]$. If $M_i = \max\{x_i\}$, $m_i = \min\{x_i\}$, $i \in \{1,  \dots,  p\}$ then
-\begin{equation}
-    x'_i = \frac{x_i - m_i}{M_i-m_i} \quad i \in \{1,  \dots,  p\}    
-\end{equation}
+\begin{align}
+    x'_i = \frac{x_i - m_i}{M_i-m_i}, && i \in \{1,  \dots,  p\}    
+\end{align}
 where all operations are intended to be element-wise. \\
 \\
 On the other hand the \textbf{Standard-Scaler} makes the values of each feature in the data to have zero-mean and unit-variance. In particular: 
-\begin{equation}
-    x'_i = \frac{x_i - \bar{x_i}}{s_i} \quad i \in \{1,  \dots,  p\}    
-\end{equation}
+\begin{align}
+    x'_i = \frac{x_i - \bar{x_i}}{s_i}, && i \in \{1,  \dots,  p\}    
+\end{align}
 where $\bar{x_i}$ is the \textit{sample mean} and $s_i$ is the \textit{sample variance} of the $i$-th column
 \begin{lstlisting}[language=Python, caption= Data scaling]
 #Performing scaling using min-max scaler
@@ -189,7 +189,7 @@ X_test_scaled_std = scaler_std.transform(X_test)
 As it is the case with most steps in our analysis pipeline, scaling is \textit{fitted} on \textbf{training data}, meaning that all the values used for the scaling are computed on the training dataset. When performing a prediction, test data should also undergo the same rescaling process using however the values fitted with the training data. Not doing so would result in what in data analysis is called \textit{data leakage}, meaning that information about test data \textit{leaked} into the training process.
 
 \subsection{Performing PCA on the dataset}
-PCA stands for \textit{principal component analysis} and is a technique used to reduce the dimensionality of the data (number of columns) while retaining as much information as possible.
+PCA stands for \textit{Principal Component Analysis} and is a technique used to reduce the dimensionality of the data (number of columns) while retaining as much information as possible.
 \\
 \\
 Let \(X \in \mathbb{R}^{n \times p}\) be our feature matrix and let
@@ -209,7 +209,7 @@ with:
     0 & \dots & \lambda_n
  \end{bmatrix}, \qquad \lambda_1 \geq \lambda_2 \geq \dots \geq 0.
 \end{equation}
-Then it can be shown that \textbf{the columns of \(V\) describe the directions of greater variance of data}, depending on the eigenvalues magnitude. This means that \(V\) is a new basis for \(\mathbb{R}^p\) and can be seen as a rotation of the data. Let \(x^{(i)}\in \mathbb{R}^p\), then \(y^{(i)} = V^T x^{(i)}\) is the same vector but represented with basis \(V\). By this token we could compute the rotation of each point in our original data \(X\) obtaining the matrix \(Y = \Bar{X}V\in \mathbb{R}^{n\times p}\). The resulting covariance matrix \(\Sigma_Y\) would be:
+Then it can be shown that \textbf{the columns of \(V\) describe the directions of greater variance of data}, depending on the eigenvalues magnitude. This means that \(V\) is a new basis for \(\mathbb{R}^p\) and can be seen as a \textbf{rotation matrix}. Let \(x^{(i)}\in \mathbb{R}^p\), then \(y^{(i)} = V^T x^{(i)}\) is the same vector but represented with basis \(V\). By this token we could compute the rotation of each point in our original data \(X\) obtaining the matrix \(Y = \Bar{X}V\in \mathbb{R}^{n\times p}\). The resulting covariance matrix \(\Sigma_Y\) would be:
 \begin{equation}
     \Sigma_Y = \frac{1}{N- 1} Y^T Y = V^T \Bar{X}^T \Bar{X} V = V^T \Sigma V = \Lambda
 \end{equation}
