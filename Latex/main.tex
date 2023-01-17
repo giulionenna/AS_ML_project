@@ -173,11 +173,17 @@
 \begin{document}
 \maketitle
 \section{Introduction} 
-The main goal of this report is to apply different machine learning tecniques to a \href{http://archive.ics.uci.edu/ml/datasets/Bank+Marketing}{dataset} that can be found on the \href{http://archive.ics.uci.edu/ml/index.php}{UCI Machine Learning Repository}. The data is related with direct marketing campaigns (phone calls) of a Portuguese banking institution. Each entry represents a phone call to a client of whom several features are provided. \\
+The main goal of this report is to test different machine learning tecniques to a \href{http://archive.ics.uci.edu/ml/datasets/Bank+Marketing}{dataset} that can be found on the \href{http://archive.ics.uci.edu/ml/index.php}{UCI Machine Learning Repository}. The data is related with direct marketing campaigns (phone calls) of a Portuguese banking institution. Each entry represents a phone call to a client of whom several features are provided. \\
 \\
-The responce variable is binary (yes or no) and indicates whether a phone call successfully convinced the client to purchase a financial product the bank is tryng to sell (bank term deposit). Among the 20 provided features, 11 are categorical and the remaining are numerical. An extensive description of each feature will now follow.
+The responce variable is binary (yes or no) and indicates whether a phone call successfully convinced the client to purchase a financial product the bank is tryng to sell (bank term deposit). Among the 20 provided features, 11 are categorical and the remaining are numerical. An extensive description of each feature will follow in section \ref{attr_info}.\\
+\\
+In section \ref{classification_theory}, different classification tecniques will be briefly introduced from a theorethical point of view. In section \ref{results} each classification algorithm will be applied to the data and results will be discussed.\\
+\\
+Since we are facing a classification task, what we are trying to obtain is finally a classification model that can outperform making random calls to clients. A brief discussion of the benefits that can be achieved by deploying such model with real world data will be in section \ref{concl}
+
 
 \subsection{Attribute information}
+\label{attr_info}
 Table \ref{table_attributes} provides an extensive overview about each attribute featured in the dataset.
 \\
 \\
@@ -244,10 +250,14 @@ Important notes about some of the attributes are the following:
 \section{Data Exploration and Preprocessing}
 \input{data_exploration_preprocessing}
 \section{Classification methods used on data}
+\label{classification_theory}
 \input{classification}
 \section{Results of the analysis}
+\label{results}
 \input{results}
 
+\section{Conclusion}
+\label{concl}
 %\bibliographystyle{plain} % We choose the "plain" reference style
 %\bibliography{refs} % Entries are in the refs.bib file
 
