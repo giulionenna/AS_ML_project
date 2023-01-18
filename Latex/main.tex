@@ -256,8 +256,12 @@ Important notes about some of the attributes are the following:
 \label{results}
 \input{results}
 
-\section{Conclusion}
+\section{Conclusions}
 \label{concl}
+With this work we tested various classification algorithms on a dataset containing outcomes about promotional phone calls. As we've seen in \ref{dataset_splitting} about \(10\%\) of the calls are successful calls while the remaining \(90\%\) were unsuccessful. This means that \(90\%\) of the budjet allocated by the bank to the phone campaign is lost to unsuccessful calls. For this reason, employing a classification model that can label whether a call will be successful or not based on some available data about the customer would be of great help in order to reduce costs and maximize the outcomes. As shown in section \ref{results} any classification tool can greatly improve the performance of the campaign, if the bank were to deploy the Random Forest classifier and only call clients labeled as "successful", it would improve the success probability from \(\sim 10\%\) to about \(\sim 34\%\).
+\\
+\\
+An interesting addition to the work would be to experiment with various performance metrics and introduce a "cost" metric that would include the cost of each call in order to better judge the accuracy and effectiveness of each model.
 %\bibliographystyle{plain} % We choose the "plain" reference style
 %\bibliography{refs} % Entries are in the refs.bib file
 
